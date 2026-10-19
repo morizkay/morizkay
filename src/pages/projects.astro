@@ -1,0 +1,27 @@
+---
+import Contact from '../components/Contact.astro';
+import Icon from '../components/Icon.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { profile, projects } from '../data/profile';
+import Page from '../layouts/Page.astro';
+---
+
+<Page title="Projects — Rizky / morizkay" description="Selected public projects by Rizky: ClosedRouter, Efektif, pi-cursor-auth, Pantai, Lokalisa, and AppVolume.">
+  <header class="page-heading">
+    <span class="eyebrow">SELECTED WORK</span>
+    <h1>Ideas made<br /><em>into software.</em></h1>
+    <p>Developer tools, interface building blocks, and experiments in making everyday work a little better.</p>
+  </header>
+  <div class="projects-page-grid">
+    <section aria-labelledby="featured-projects-title">
+      <h2 id="featured-projects-title" class="sr-only">Featured projects</h2>
+      <div class="featured-grid">{projects.slice(0, 2).map(project => <ProjectCard project={project} featured />)}</div>
+    </section>
+    <section aria-labelledby="more-projects-title">
+      <div class="section-heading"><div><span class="eyebrow">MORE EXPLORATIONS</span><h2 id="more-projects-title">A few other <em>things.</em></h2></div></div>
+      <div class="project-grid">{projects.slice(2).map(project => <ProjectCard project={project} />)}</div>
+    </section>
+  </div>
+  <div class="project-outro"><p>There’s more in the repositories.</p><a class="text-link" href={profile.github}>Explore my GitHub <Icon name="arrow" size={18} /></a></div>
+  <Contact />
+</Page>

@@ -1,0 +1,10 @@
+---
+import BaseHead from '../components/BaseHead.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+interface Props { title?: string; description?: string; noindex?: boolean; }
+const { title = SITE_TITLE, description = SITE_DESCRIPTION, noindex } = Astro.props;
+---
+<!doctype html>
+<html lang="en"><head><BaseHead title={title} description={description} noindex={noindex} /></head><body><Header /><main id="main" class="container" tabindex="-1"><slot /></main><Footer /></body></html>

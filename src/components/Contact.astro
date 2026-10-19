@@ -1,0 +1,5 @@
+---
+import { profile } from '../data/profile';
+import Icon from './Icon.astro';
+---
+<section id="contact" class="contact-section" aria-labelledby="contact-title"><span class="contact-decoration" aria-hidden="true">✳</span><div><span class="eyebrow">GOOD THINGS START WITH A CONVERSATION</span><h2 id="contact-title">What are you<br /><em>working on?</em></h2><p>A project, a question, or a shared curiosity.<br />I’d love to hear about it.</p></div><div class="contact-links"><a class="contact-email" href={`mailto:${profile.email}`}>{profile.email}<Icon name="arrow" size={28} /></a><div><a href={profile.github}>GitHub <Icon name="arrow" size={16} /></a><a href={profile.linkedin}>LinkedIn <Icon name="arrow" size={16} /></a><a href={profile.bluesky}>Bluesky <Icon name="arrow" size={16} /></a></div></div></section>

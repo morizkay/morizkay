@@ -1,0 +1,22 @@
+# Dependencies and generated site output
+node_modules/
+dist/
+.astro/
+.pnpm-store/
+
+# Local environment and deployment state
+.env
+.env.*
+!.env.example
+!.env.*.example
+*.local
+.vercel/
+.netlify/
+.wrangler/
+
+# Logs and local tooling output
+*.log
+coverage/
+playwright-report/
+test-results/
+.DS_Store

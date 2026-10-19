@@ -1,0 +1,12 @@
+---
+import Icon from './Icon.astro';
+import type { projects } from '../data/profile';
+interface Props { project: typeof projects[number]; featured?: boolean; }
+const { project, featured = false } = Astro.props;
+---
+<article class:list={['project-card', { featured }]}>
+  {featured && <div class:list={['project-visual', `visual-${project.visual}`]} aria-hidden="true">
+    {project.visual === 'router' ? <div class="router-diagram"><div class="diagram-caption"><span class="status-dot"></span> ONE GATEWAY. YOUR MODELS.</div><div class="router-flow"><span class="diagram-node">Your app<Icon name="code" /></span><span class="diagram-wire"></span><span class="router-core">cr<span>ClosedRouter</span></span><span class="diagram-wire"></span><div class="model-stack"><span>OpenAI</span><span>Anthropic</span><span>Ollama</span></div></div><div class="diagram-foot">self-hosted <span>→</span> connected <span>→</span> yours</div></div> : <div class="ui-diagram"><div class="design-label">efektif <span>interface essentials</span></div><div class="swatches"><i></i><i></i><i></i><i></i><i></i></div><div class="component-samples"><span class="sample-button">Make it simple <Icon name="right" size={16} /></span><span class="sample-toggle"><i></i></span><span class="sample-avatar">e.</span></div><div class="sample-bottom"><span>Aa <small>Built to belong.</small></span><span class="sample-badge"><Icon name="check" size={14} /> Consistent by design</span></div></div>}
+  </div>}
+  <div class="project-body"><div class="project-topline"><span class="eyebrow">{project.label}</span>{!featured && <Icon name={project.visual} size={22} />}</div><h3><a href={project.href}>{project.name}<Icon name="arrow" size={22} /></a></h3><p>{project.description}</p><div class="project-bottom"><ul class="tags" aria-label="Technologies">{project.tags.map(tag => <li>{tag}</li>)}</ul><a class="project-link" href={project.href} aria-label={`${project.linkLabel}: ${project.name}`}><span>{featured ? project.linkLabel : project.href.includes('npmjs') ? 'npm' : 'GitHub'}</span><Icon name="arrow" size={16} /></a></div></div>
+</article>
