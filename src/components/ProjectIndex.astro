@@ -1,0 +1,15 @@
+---
+import Icon from './Icon.astro';
+import { projects } from '../data/profile';
+---
+<ol class="project-index">
+  {projects.map((project, index) => (
+    <li><a class="project-row" href={`/projects/#${project.slug}`}>
+      <span class="num" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>
+      <span class="name">{project.name}</span>
+      <span class="summary">{project.summary}</span>
+      <span class="stack">{project.stack.slice(0, 3).join(' · ')}</span>
+      <Icon name="arrow" />
+    </a></li>
+  ))}
+</ol>

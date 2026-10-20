@@ -12,10 +12,15 @@ This repository has two public surfaces: `README.md` is the GitHub profile, and 
 - **Build command:** `pnpm build`.
 - **Publish directory:** `dist`.
 - **Required environment variables:** none.
+- **Network at build time:** required. Astro downloads Geist and Geist Mono from Google Fonts and self-hosts them under `/_astro/fonts/`; visitors never contact Google.
 
 The required content integrations are already installed: `@astrojs/mdx` and `@astrojs/sitemap` are enabled in `astro.config.mjs`, and `@astrojs/rss` generates the feed in `src/pages/rss.xml.js`. No additional integration installation is needed for Markdown/MDX posts, the sitemap, or RSS.
 
 Serve the generated directory as static files, including its `index.html` files. Preserve the trailing slash on page URLs, for example `/about/` and `/blog/`; this matches `trailingSlash: 'always'` in `astro.config.mjs`. File URLs such as `/rss.xml` and `/robots.txt` retain their extensions without a trailing slash. Configure your static host to serve `404.html` with an HTTP 404 status for unknown routes, rather than rewriting every missing path to the homepage.
+
+## Replacing the previous site
+
+morizkay.com previously served a Next.js site from the separate `morizkay/morizkay.com` repository. Deploying this build replaces it, including its `/pi` install script (`curl -fsSL https://morizkay.com/pi | bash`). That script installs `@morizkay/pi-chrome`, which was not published on npm when checked, so it was not carried over. To keep the URL, put the script at `public/pi` and rebuild. The old repository’s `ssh morizkay.com` server ran on a separate VPS and is unaffected by static hosting, but pointing the domain’s A record at a static host takes SSH away from that VPS.
 
 ## Domains and canonical URLs
 
@@ -48,7 +53,7 @@ pnpm astro dev stop
 
 Run `pnpm build && pnpm test` to build and check the production output. The Node-based output check verifies local links and fragments, page metadata, sitemap/RSS/robots consistency, image alt attributes, and exclusion of draft routes and starter content. It does not contact external websites or validate hosting redirects.
 
-Use `pnpm preview` to inspect the build locally. Run `pnpm assets` after editing the artwork in `scripts/generate-assets.mjs` to regenerate the social card and favicon, then rebuild.
+Use `pnpm preview` to inspect the build locally. Run `pnpm assets` after editing the artwork in `scripts/generate-assets.mjs` or `public/favicon.svg` to regenerate the social card and favicon, then rebuild. The social card renders with locally installed fonts, so install Geist and Geist Mono first (or point `FONTCONFIG_FILE` at a config that includes them) for an exact match.
 
 ## Publishing writing
 

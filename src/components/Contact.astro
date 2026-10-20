@@ -1,5 +1,14 @@
 ---
-import { profile } from '../data/profile';
+import { links, profile } from '../data/profile';
 import Icon from './Icon.astro';
 ---
-<section id="contact" class="contact-section" aria-labelledby="contact-title"><span class="contact-decoration" aria-hidden="true">✳</span><div><span class="eyebrow">GOOD THINGS START WITH A CONVERSATION</span><h2 id="contact-title">What are you<br /><em>working on?</em></h2><p>A project, a question, or a shared curiosity.<br />I’d love to hear about it.</p></div><div class="contact-links"><a class="contact-email" href={`mailto:${profile.email}`}>{profile.email}<Icon name="arrow" size={28} /></a><div><a href={profile.github}>GitHub <Icon name="arrow" size={16} /></a><a href={profile.linkedin}>LinkedIn <Icon name="arrow" size={16} /></a><a href={profile.bluesky}>Bluesky <Icon name="arrow" size={16} /></a></div></div></section>
+<section id="contact" class="section contact" aria-labelledby="contact-title">
+  <div>
+    <h2 id="contact-title">Get in touch</h2>
+    <p>About one of my projects, a package, or something you’re building. Email is the best way to reach me.</p>
+    <a class="contact-email" href={`mailto:${profile.email}`}>{profile.email}<Icon name="arrow" size={18} /></a>
+  </div>
+  <ul class="elsewhere" aria-label="Elsewhere">
+    {links.map(link => <li><a href={link.href} rel="me"><span>{link.label}</span><span class="mono">{link.handle}</span><Icon name="arrow" size={14} /></a></li>)}
+  </ul>
+</section>

@@ -2,47 +2,39 @@
 import { Image } from 'astro:assets';
 import avatar from '../assets/avatar.jpg';
 import Contact from '../components/Contact.astro';
-import Icon from '../components/Icon.astro';
 import { profile } from '../data/profile';
 import Page from '../layouts/Page.astro';
 ---
-
-<Page title="About Rizky — morizkay" description="Meet Moh. Rizky Kay, a software developer based in Palu, Indonesia, working on developer tools, interfaces, and local software.">
-  <header class="page-heading">
-    <span class="eyebrow">BEHIND THE HANDLE</span>
-    <h1>A little<br /><em>about me.</em></h1>
-    <p>Rizky in person. morizkay on the internet.</p>
+<Page title="About — Rizky Kay" description="About Moh. Rizky Kay (morizkay), a software developer in Palu, Indonesia, working on developer tools, design systems, and AI agent tooling.">
+  <header class="page-head">
+    <h1>About</h1>
   </header>
 
-  <div class="about-layout">
-    <aside class="profile-panel" aria-label="Profile">
-      <Image src={avatar} width={400} height={400} alt={`Portrait of ${profile.name}`} loading="eager" />
-      <div class="profile-caption">
-        <h2>{profile.name}</h2>
-        <p>@{profile.handle}</p>
-        <div class="profile-details"><Icon name="globe" size={16} /><span>{profile.location}</span></div>
-      </div>
-    </aside>
-    <div class="about-story">
-      <span class="eyebrow">HELLO, I’M RIZKY</span>
-      <h2>Curiosity,<br /><em>put into code.</em></h2>
-      <p>I’m {profile.name}, a software developer based in {profile.location}. I build developer tools, interfaces, and software that makes everyday workflows a little easier.</p>
-      <p>I’m currently at Tictag and maintain <a href="https://github.com/efektif">Efektif</a>, a collection of React components, hooks, and shared design tokens, with primitives for React Native.</p>
-      <p>My personal projects range from a self-hosted AI gateway to a dashboard for local agent sessions. They’re a way to explore how software fits into the tools we already use, and how those tools can work better together.</p>
-      <div class="about-links">
-        <a class="text-link" href={profile.github}>Find me on GitHub <Icon name="arrow" size={18} /></a>
-        <a class="text-link" href={profile.linkedin}>Connect on LinkedIn <Icon name="arrow" size={18} /></a>
-      </div>
+  <div class="about">
+    <div class="about-text">
+      <p>I’m {profile.name}. Most people call me Rizky, and online I’m morizkay. I’m a software developer based in {profile.location}.</p>
+      <p>I work at Tictag, and I maintain <a class="link" href="https://github.com/efektif">Efektif</a>, a design system with React components, hooks, shared tokens, and React Native primitives.</p>
+      <p>My own projects mostly come from the tools I use every day. I use the Pi coding agent, so I wrote an extension that lets it run Cursor models and a dashboard for watching agent sessions. I run Omarchy on Linux, so some of my tools are Omarchy plugins. I wanted my model keys and traffic under my control, so I built a self-hosted LLM gateway.</p>
+      <p>I mostly write TypeScript and React, with Rust, Swift, and QML when a project calls for them. I publish what I can as open source on GitHub and npm.</p>
     </div>
+    <figure class="portrait">
+      <Image src={avatar} width={400} height={400} alt={`Portrait of ${profile.name}`} loading="eager" />
+      <figcaption class="label">{profile.name}</figcaption>
+    </figure>
   </div>
 
-  <section class="interests-section" aria-labelledby="interests-title">
-    <div class="section-heading"><div><span class="eyebrow">THREADS THROUGH MY WORK</span><h2 id="interests-title">What keeps me <em>curious.</em></h2></div></div>
-    <div class="interest-grid">
-      <article class="interest-card"><Icon name="sliders" size={26} /><h3>Interfaces</h3><p>Useful components, considered details, and design systems that make the next thing easier to build.</p></article>
-      <article class="interest-card"><Icon name="terminal" size={26} /><h3>Developer tools</h3><p>Small improvements to everyday workflows, from local development to working with AI agents.</p></article>
-      <article class="interest-card"><Icon name="code" size={26} /><h3>Local software</h3><p>Tools that run close to the work, with room to inspect, adapt, and make them your own.</p></article>
-    </div>
+  <section class="section" aria-labelledby="facts-title">
+    <div class="section-head"><h2 id="facts-title">At a glance</h2></div>
+    <dl class="facts-table">
+      <dt>Name</dt><dd>{profile.name} <span>· Rizky · @{profile.handle}</span></dd>
+      <dt>Location</dt><dd>{profile.location} <span>· {profile.timezone}</span></dd>
+      <dt>Work</dt><dd>Tictag</dd>
+      <dt>Maintaining</dt><dd><a class="link" href="https://github.com/efektif">Efektif</a></dd>
+      <dt>Languages</dt><dd>TypeScript, Rust, Swift, QML</dd>
+      <dt>Setup</dt><dd>Linux with Omarchy (Hyprland), Pi coding agent</dd>
+      <dt>Domains</dt><dd>morizkay.com <span>· rizky.id</span></dd>
+    </dl>
   </section>
+
   <Contact />
 </Page>

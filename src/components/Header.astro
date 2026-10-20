@@ -4,9 +4,13 @@ import Icon from './Icon.astro';
 ---
 <a class="skip-link" href="#main">Skip to content</a>
 <header class="site-header"><div class="container header-inner">
-  <a class="wordmark" href="/" aria-label="morizkay — home"><span class="brand-mark" aria-hidden="true">m<span>.</span></span><span>morizkay<span class="wordmark-dot">.</span></span></a>
-  <nav aria-label="Main navigation"><HeaderLink href="/projects/">Work</HeaderLink><HeaderLink href="/about/">About</HeaderLink><HeaderLink href="/blog/">Notes</HeaderLink></nav>
-  <div class="header-actions"><button id="theme-toggle" class="icon-button" type="button" aria-label="Switch color theme" hidden><Icon name="sun" class="theme-sun" /><Icon name="moon" class="theme-moon" /></button><a href="/#contact" class="header-contact">Say hello <Icon name="arrow" size={16} /></a></div>
+  <a class="wordmark" href="/" aria-label="morizkay, home"><span class="wordmark-mark" aria-hidden="true"></span>morizkay</a>
+  <nav class="site-nav" aria-label="Main navigation">
+    <HeaderLink href="/projects/">Projects</HeaderLink>
+    <HeaderLink href="/about/">About</HeaderLink>
+    <HeaderLink href="/blog/">Notes</HeaderLink>
+    <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch color theme" hidden><Icon name="sun" class="theme-sun" /><Icon name="moon" class="theme-moon" /></button>
+  </nav>
 </div></header>
 <script>
   const button = document.querySelector<HTMLButtonElement>('#theme-toggle');
@@ -14,7 +18,7 @@ import Icon from './Icon.astro';
   const isDark = () => document.documentElement.dataset.theme ? document.documentElement.dataset.theme === 'dark' : preference.matches;
   const updateLabel = () => {
     button?.setAttribute('aria-label', `Switch to ${isDark() ? 'light' : 'dark'} theme`);
-    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDark() ? '#151a17' : '#f7f8f2');
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', isDark() ? '#121211' : '#f5f4f0');
   };
   if (button) {
     button.hidden = false;

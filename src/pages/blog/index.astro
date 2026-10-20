@@ -1,36 +1,24 @@
 ---
-import { Image } from 'astro:assets';
 import FormattedDate from '../../components/FormattedDate.astro';
-import Icon from '../../components/Icon.astro';
+import { profile } from '../../data/profile';
 import Page from '../../layouts/Page.astro';
 import { getPublishedPosts } from '../../lib/posts';
 
 const posts = await getPublishedPosts();
 ---
-
-<Page title="Notes — Rizky / morizkay" description="Notes from Rizky on building software, exploring developer tools, and learning along the way.">
-  <header class="page-heading">
-    <span class="eyebrow">THE NOTEBOOK</span>
-    <h1>Thinking<br /><em>out loud.</em></h1>
-    <p>A place for things learned, questions explored, and the details behind the code.</p>
+<Page title="Notes — Rizky Kay" description="Notes from Rizky Kay (morizkay) on building software, developer tools, and working with AI agents.">
+  <header class="page-head">
+    <h1>Notes</h1>
+    <p>Write-ups on things I’ve built and learned. Subscribe with <a class="link" href="/rss.xml">RSS</a>.</p>
   </header>
   {posts.length > 0 ? (
-    <section aria-label="Published notes"><div class="notes-list">{posts.map(post => (
-      <article class="note-card">
-        {post.data.heroImage && <a href={`/blog/${post.id}/`} tabindex="-1" aria-hidden="true"><Image src={post.data.heroImage} width={720} height={360} alt="" loading="lazy" /></a>}
-        <div class="note-meta"><FormattedDate date={post.data.pubDate} /></div>
-        <h2><a href={`/blog/${post.id}/`}>{post.data.title}<Icon name="arrow" size={22} /></a></h2>
-        <p>{post.data.description}</p>
-      </article>
-    ))}</div></section>
+    <ol class="post-index page-list">{posts.map(post => (
+      <li><a class="post-row" href={`/blog/${post.id}/`}><FormattedDate date={post.data.pubDate} /><div><h2>{post.data.title}</h2><p>{post.data.description}</p></div></a></li>
+    ))}</ol>
   ) : (
-    <section class="empty-notes" aria-labelledby="empty-notes-title">
-      <div class="notes-icon"><Icon name="book" size={34} /></div>
-      <span class="eyebrow">A FRESH PAGE</span>
-      <h2 id="empty-notes-title">Room for the<br /><em>next thought.</em></h2>
-      <p>No notes published yet. In the meantime, the projects are a good place to see what I’ve been exploring.</p>
-      <a class="button button-primary" href="/projects/">Explore projects <Icon name="right" size={18} /></a>
+    <section class="empty page-list" aria-label="No notes yet">
+      <p>Nothing published yet.</p>
+      <p>In the meantime, see the <a class="link" href="/projects/">projects</a> or follow along on <a class="link" href={profile.bluesky}>Bluesky</a>.</p>
     </section>
   )}
-  <div class="notes-footer"><p>Prefer to read in your own time?</p><a class="text-link" href="/rss.xml">Subscribe with RSS <Icon name="arrow" size={16} /></a></div>
 </Page>

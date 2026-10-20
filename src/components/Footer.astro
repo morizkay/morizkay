@@ -1,4 +1,7 @@
 ---
 import { profile } from '../data/profile';
 ---
-<footer class="site-footer container"><div><a class="footer-name" href="/">morizkay<span>.</span></a><p>A little corner of the internet, made with care.</p></div><div class="footer-right"><nav aria-label="Social links"><a href={profile.github} rel="me">GitHub</a><a href={profile.linkedin} rel="me">LinkedIn</a><a href={profile.bluesky} rel="me">Bluesky</a><a href="/rss.xml">RSS</a></nav><p>© {new Date().getFullYear()} {profile.name} <span aria-hidden="true">·</span> <a href="https://morizkay.com">morizkay.com</a> / <a href="https://rizky.id">rizky.id</a></p></div></footer>
+<footer class="container site-footer">
+  <span>© {new Date().getFullYear()} {profile.name}</span>
+  <nav aria-label="Footer"><a href={profile.github} rel="me">GitHub</a><a href={profile.bluesky} rel="me">Bluesky</a><a href="/rss.xml">RSS</a></nav>
+</footer>
